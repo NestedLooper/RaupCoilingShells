@@ -3,6 +3,7 @@
 import { useEffect, useMemo } from 'react'
 import { Line } from '@react-three/drei'
 import * as THREE from 'three'
+import { FitCamera } from '@/components/three/FitCamera'
 import { buildShell, type ShellParams } from '@/lib/raup'
 
 export interface ShellProps {
@@ -13,7 +14,7 @@ export interface ShellProps {
 }
 
 export function Shell({ params, cut = false, wireframe = false }: ShellProps) {
-  const { geometry, plane, axis } = useMemo(() => {
+  const { geometry, plane, axis, extent } = useMemo(() => {
     const mesh = buildShell(params)
     const g = new THREE.BufferGeometry()
     g.setAttribute('position', new THREE.BufferAttribute(mesh.positions, 3))
@@ -24,6 +25,7 @@ export function Shell({ params, cut = false, wireframe = false }: ShellProps) {
       geometry: g,
       plane: new THREE.Plane(new THREE.Vector3(0, 0, -1), mesh.axis.z),
       axis: mesh.axis,
+      extent: mesh.extent,
     }
   }, [params])
 
@@ -31,6 +33,7 @@ export function Shell({ params, cut = false, wireframe = false }: ShellProps) {
 
   return (
     <>
+      <FitCamera radial={extent.radial} halfHeight={extent.halfHeight} />
       <mesh geometry={geometry}>
         <meshStandardMaterial
           key={cut ? 'cut' : 'whole'}

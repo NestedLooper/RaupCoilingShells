@@ -20,7 +20,7 @@ export function InfoPanel() {
   }, [open])
 
   return (
-    <div className="pointer-events-none absolute left-3 top-3 z-10 flex max-h-[calc(100%-1.5rem)] w-[calc(100%-1.5rem)] max-w-md flex-col items-start gap-2">
+    <div className="pointer-events-none absolute left-3 top-3 z-10 flex max-h-[80dvh] w-[calc(100%-1.5rem)] md:max-h-[calc(100%-1.5rem)] max-w-md flex-col items-start gap-2">
       <button
         type="button"
         aria-label="About Raup's coiling model"
@@ -66,6 +66,12 @@ export function InfoPanel() {
               difference between a flat, disc-like nautilus and a tall, pointy snail spire).
             </li>
           </ul>
+          <aside className="mt-3 border-l-2 border-[#26363d] pl-3 text-[#8fa0a3]">
+            An aside: this explorer has a fourth slider, <Symbol>S</Symbol>, for the shape of the
+            aperture (its height divided by its width). Raup&apos;s model includes the shape of the
+            generating curve as well, but it is usually held fixed, which is why the model is
+            described by three core parameters.
+          </aside>
           <p className="mt-3">
             By exploring these combinations in a theoretical{' '}
             <a

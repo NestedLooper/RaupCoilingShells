@@ -118,6 +118,8 @@ export interface ShellMesh {
   indices: Uint32Array
   /** Where the coiling axis crosses the x-z plane after centring. */
   axis: { x: number; z: number }
+  /** Room the shell needs as it spins about the vertical through the origin. */
+  extent: { radial: number; halfHeight: number }
 }
 
 const srgbToLinear = (c: number) => (c <= 0.04045 ? c / 12.92 : Math.pow((c + 0.055) / 1.055, 2.4))
@@ -183,9 +185,17 @@ export function buildShell(params: ShellParams, segP = 56): ShellMesh {
   // Centre and scale so every shell fills the same view.
   const mid = min.map((lo, c) => (lo + max[c]) / 2)
   const scale = FIT_SIZE / Math.max(max[0] - min[0], max[1] - min[1], max[2] - min[2], 1e-6)
+  let radial = 0
   for (let j = 0; j < positions.length; j += 3) {
     for (let c = 0; c < 3; c++) positions[j + c] = (positions[j + c] - mid[c]) * scale
+    radial = Math.max(radial, Math.hypot(positions[j], positions[j + 2]))
   }
 
-  return { positions, colors, indices, axis: { x: -mid[0] * scale, z: -mid[2] * scale } }
+  return {
+    positions,
+    colors,
+    indices,
+    axis: { x: -mid[0] * scale, z: -mid[2] * scale },
+    extent: { radial, halfHeight: ((max[1] - min[1]) * scale) / 2 },
+  }
 }

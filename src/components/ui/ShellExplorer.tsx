@@ -74,7 +74,7 @@ export function ShellExplorer() {
 
   return (
     <div className="flex min-h-0 flex-1 flex-col-reverse md:flex-row">
-      <aside className="max-h-[50vh] overflow-y-auto border-t border-[#26363d] bg-[#121d22] p-4 text-sm md:max-h-none md:w-80 md:shrink-0 md:border-r md:border-t-0">
+      <aside className="min-h-0 flex-1 overflow-y-auto border-t border-[#26363d] bg-[#121d22] p-4 text-sm md:w-80 md:flex-none md:border-r md:border-t-0">
         <h1 className="font-serif text-xl font-semibold">Raup coiling shells</h1>
         <p className="mb-3.5 mt-1 text-[12.5px] text-[#8fa0a3]">
           Raup&apos;s four-parameter model of coiled shells. Drag to orbit, scroll to zoom.
@@ -170,7 +170,7 @@ export function ShellExplorer() {
         </div>
       </aside>
 
-      <div className="relative min-h-[45vh] flex-1">
+      <div className="relative h-[30dvh] min-h-[220px] shrink-0 md:h-auto md:min-h-0 md:flex-1">
         <InfoPanel />
         <ShellScene autoRotate={spin}>
           <Shell params={params} cut={cut} wireframe={wireframe} />

@@ -13,7 +13,7 @@ export const metadata: Metadata = {
 export default function RootLayout({ children }: { children: ReactNode }) {
   return (
     <html lang="en" className="dark">
-      <body className={`${inter.className} flex min-h-screen flex-col bg-[#0c1418] text-[#e6ded0]`}>
+      <body className={`${inter.className} flex h-dvh flex-col bg-[#0c1418] text-[#e6ded0]`}>
         <nav className="flex items-center gap-4 border-b border-[#26363d] px-6 py-4">
           <span className="text-sm font-bold tracking-widest text-[#e0a458]">RAUP COILING SHELLS</span>
           <a
