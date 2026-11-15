@@ -1,0 +1,5 @@
+@import "tailwindcss";
+
+input[type="range"] {
+  accent-color: #e0a458;
+}
