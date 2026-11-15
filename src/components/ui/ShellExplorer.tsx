@@ -3,6 +3,7 @@
 import { useState } from 'react'
 import { Shell } from '@/components/three/Shell'
 import { ShellScene } from '@/components/three/ShellScene'
+import { InfoPanel } from '@/components/ui/InfoPanel'
 import { MorphospaceMap } from '@/components/ui/MorphospaceMap'
 import { PRESETS, whorlsOverlap, type ShellParams } from '@/lib/raup'
 
@@ -169,7 +170,8 @@ export function ShellExplorer() {
         </div>
       </aside>
 
-      <div className="min-h-[45vh] flex-1">
+      <div className="relative min-h-[45vh] flex-1">
+        <InfoPanel />
         <ShellScene autoRotate={spin}>
           <Shell params={params} cut={cut} wireframe={wireframe} />
         </ShellScene>
